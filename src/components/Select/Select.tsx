@@ -16,19 +16,20 @@ function Select({ data, selected, onSelect }: SelectProps) {
   };
 
   return (
-    <div className="w-[535px]">
-      <label htmlFor="breed" className="w-full">
-        <input
-          type="text"
-          name="breed"
-          id="breed"
-          className="mt-1 p-2 border w-full rounded-lg border-gray-300"
-          onFocus={() => setShow(true)}
-          value={data.find((breed) => breed.id === selected)?.name || ""}
-          placeholder="Velg hunderase"
-          onChange={() => {}}
-        />
+    <div className="w-[535px] text-gray-700 text-left text-sm">
+      <label htmlFor="breed" className="">
+        Hunderase
       </label>
+      <input
+        type="text"
+        name="breed"
+        id="breed"
+        className="mt-1 p-2 border w-full rounded-lg border-gray-300"
+        onFocus={() => setShow(true)}
+        value={data.find((breed) => breed.id === selected)?.name || ""}
+        placeholder="Velg hunderase"
+        onChange={() => {}}
+      />
 
       {show && (
         <ul className="h-[300px] overflow-y-auto border border-gray-300 rounded-md py-4 mt-1">
