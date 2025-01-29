@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+:root {
+  --aidn-green: #B7FAAC;
+  --aidn-yellow: #FBD960;
+  --aidn-blue: #99DAFF;
+}
