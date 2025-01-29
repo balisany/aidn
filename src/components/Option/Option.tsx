@@ -1,11 +1,12 @@
 import { Breed } from "../../types";
+import style from "./Option.module.css";
 
 type OptionProps = {
   data: Breed;
 };
 
 function Option({ data }: OptionProps) {
-  return <li>{data.name}</li>;
+  return <li className={style.option}>{data.name}</li>;
 }
 
 export default Option;
