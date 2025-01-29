@@ -1,29 +1,17 @@
-import useSWR from "swr";
 import "./App.css";
-import axios from "axios";
-import { Breed } from "./types";
-
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+import Select from "./components/Select";
+import useBreeds from "./hooks/useBreeds";
 
 function App() {
-  const { data, isLoading, error } = useSWR<Breed[]>(
-    "https://api.thedogapi.com/v1/breeds",
-    fetcher
-  );
+  const { data, isLoading, error } = useBreeds();
 
   return (
-    <>
+    <form>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      <h1 className="text-3xl text-aidn-blue font-bold underline">
-        Dog Breeds
-      </h1>
-      <ul>
-        {data?.map((breed) => (
-          <li key={breed.id}>{breed.name}</li>
-        ))}
-      </ul>
-    </>
+      <h1 className="text-2xl mb-10">Dog Breeds</h1>
+      {data && <Select data={data} />}
+    </form>
   );
 }
 
