@@ -26,6 +26,7 @@ function Select({ data, selected, onSelect }: SelectProps) {
           onFocus={() => setShow(true)}
           value={data.find((breed) => breed.id === selected)?.name || ""}
           placeholder="Velg hunderase"
+          onChange={() => {}}
         />
       </label>
 
