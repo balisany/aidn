@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Breed } from "../../types";
-import Style from "./Select.module.css";
-
+import Option from "../Option";
 type SelectProps = {
   data: Breed[];
   selected?: number;
@@ -8,30 +8,41 @@ type SelectProps = {
 };
 
 function Select({ data, selected, onSelect }: SelectProps) {
-  return (
-    // <ul className="h-96 overflow-y-auto">
-    //   {data.map((breed) => (
-    //     <Option key={breed.id} data={breed} />
-    //   ))}
-    // </ul>
+  const [show, setShow] = useState(false);
 
-    <div className={Style.wrapper}>
-      <select
-        className="w-[535px] p-2 border border-gray-300 rounded-md"
-        name="breed"
-        id="breed"
-        onChange={(e) => onSelect(Number(e.target.value))}
-      >
-        {data.map((breed) => (
-          <option
-            key={breed.id}
-            value={breed.id}
-            selected={selected === breed.id}
-          >
-            {breed.name}
-          </option>
-        ))}
-      </select>
+  const handleOnSelect = (id: number) => {
+    setShow(false);
+    onSelect(id);
+  };
+
+  return (
+    <div className="w-[535px]">
+      <label htmlFor="breed" className="w-full">
+        <input
+          type="text"
+          name="breed"
+          id="breed"
+          className="mt-1 p-2 border w-full rounded-lg border-gray-300"
+          onFocus={() => setShow(true)}
+          value={data.find((breed) => breed.id === selected)?.name || ""}
+          placeholder="Velg hunderase"
+        />
+      </label>
+
+      {show && (
+        <ul className="h-[300px] overflow-y-auto border border-gray-300 rounded-md py-4 mt-1">
+          {data
+            .filter((dog) => dog.bred_for)
+            .map((breed) => (
+              <Option
+                key={breed.id}
+                onSelect={handleOnSelect}
+                selected={selected}
+                data={breed}
+              />
+            ))}
+        </ul>
+      )}
     </div>
   );
 }

@@ -22,7 +22,7 @@ function App() {
       {error && <p>Error: {error}</p>}
 
       <h1 className="text-2xl mb-10 text-left">Dog Breeds</h1>
-      <div className="flex">
+      <div className="flex items-start">
         <div>
           {data && (
             <Select
