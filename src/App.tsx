@@ -1,11 +1,12 @@
 import useSWR from "swr";
 import "./App.css";
 import axios from "axios";
+import { Breed } from "./types";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 function App() {
-  const { data, isLoading, error } = useSWR(
+  const { data, isLoading, error } = useSWR<Breed[]>(
     "https://api.thedogapi.com/v1/breeds",
     fetcher
   );
@@ -18,7 +19,7 @@ function App() {
         Dog Breeds
       </h1>
       <ul>
-        {data?.map((breed: { id: number; name: string }) => (
+        {data?.map((breed) => (
           <li key={breed.id}>{breed.name}</li>
         ))}
       </ul>
