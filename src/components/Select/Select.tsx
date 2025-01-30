@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Breed } from "../../types";
 import Option from "../Option";
+import Input from "../Input/Input";
+
 type SelectProps = {
   data: Breed[];
   selected?: number;
@@ -9,10 +11,27 @@ type SelectProps = {
 
 function Select({ data, selected, onSelect }: SelectProps) {
   const [show, setShow] = useState(false);
+  const [filteredBreeds, setFilteredBreeds] = useState<Breed[]>(data);
+  const [defaultValue, setDefaultValue] = useState("");
 
   const handleOnSelect = (id: number) => {
+    if (!id) {
+      return;
+    }
+
+    const foundedBreed = data.find((breed) => breed.id === id);
+    setDefaultValue(foundedBreed?.name || "");
     setShow(false);
     onSelect(id);
+  };
+
+  const handleOnChange = (val: string) => {
+    setFilteredBreeds(
+      data.filter((breed) =>
+        breed.name.toLowerCase().includes(val.toLowerCase())
+      )
+    );
+    setDefaultValue(val);
   };
 
   return (
@@ -21,20 +40,16 @@ function Select({ data, selected, onSelect }: SelectProps) {
         Hunderase
       </label>
 
-      <input
-        type="text"
-        name="breed"
-        id="breed"
-        className="mt-1 p-2 border w-full rounded-lg border-gray-300"
+      <Input
+        onChange={handleOnChange}
         onFocus={() => setShow(true)}
-        value={data.find((breed) => breed.id === selected)?.name || ""}
-        placeholder="Velg hunderase"
-        onChange={() => {}}
+        defaultValue={defaultValue}
+        placeholder="Velg hundrase"
       />
 
       {show && (
         <ul className="h-[300px] overflow-y-auto border border-gray-300 rounded-md py-4 mt-1">
-          {data
+          {filteredBreeds
             .filter((dog) => dog.bred_for)
             .map((breed) => (
               <Option
