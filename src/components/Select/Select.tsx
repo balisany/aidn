@@ -14,6 +14,8 @@ function Select({ data, selected, onSelect }: SelectProps) {
   const [filteredBreeds, setFilteredBreeds] = useState<Breed[]>(data);
   const [defaultValue, setDefaultValue] = useState("");
 
+  const isSelected = selected !== 0;
+
   const handleOnSelect = (id: number) => {
     if (!id) {
       return;
@@ -32,6 +34,7 @@ function Select({ data, selected, onSelect }: SelectProps) {
       )
     );
     setDefaultValue(val);
+    onSelect(0);
   };
 
   return (
@@ -41,6 +44,7 @@ function Select({ data, selected, onSelect }: SelectProps) {
       </label>
 
       <Input
+        isSelected={isSelected}
         onChange={handleOnChange}
         onFocus={() => setShow(true)}
         defaultValue={defaultValue}
