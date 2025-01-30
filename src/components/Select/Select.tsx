@@ -20,7 +20,6 @@ function Select({ data, selected, onSelect }: SelectProps) {
     if (!id) {
       return;
     }
-
     const foundedBreed = data.find((breed) => breed.id === id);
     setDefaultValue(foundedBreed?.name || "");
     setShow(false);

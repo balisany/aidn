@@ -24,7 +24,7 @@ function Option({ data, selected, onSelect }: OptionProps) {
         type="button"
       >
         <p>{data.name}</p>
-        <span className="text-sm text-gray-500">{data.bred_for}</span>
+        <span className="text-sm text-gray-500 font-thin">{data.bred_for}</span>
       </button>
     </li>
   );
