@@ -7,7 +7,7 @@ import InfoBox from "./components/InfoBox/InfoBox";
 
 function App() {
   const { data, isLoading, error } = useBreeds();
-  const [selectedBreedId, setSelectedBreedId] = useState<number>();
+  const [selectedBreedId, setSelectedBreedId] = useState<number>(0);
   const [selectedBreed, setSelectedBreed] = useState<Breed>();
 
   useEffect(() => {
