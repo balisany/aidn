@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Breed } from "../../types";
-import Option from "../Option";
+import Option from "./Option";
 import Input from "../Input/Input";
 
 type SelectProps = {

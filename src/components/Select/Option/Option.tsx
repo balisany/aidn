@@ -1,4 +1,4 @@
-import { Breed } from "../../types";
+import { Breed } from "../../../types";
 
 type OptionProps = {
   data: Breed;
