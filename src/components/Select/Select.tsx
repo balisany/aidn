@@ -20,6 +20,7 @@ function Select({ data, selected, onSelect }: SelectProps) {
       <label htmlFor="breed" className="">
         Hunderase
       </label>
+
       <input
         type="text"
         name="breed"
