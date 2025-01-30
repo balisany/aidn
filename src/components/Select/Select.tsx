@@ -10,7 +10,7 @@ type SelectProps = {
 };
 
 function Select({ data, selected, onSelect }: SelectProps) {
-  const [show, setShow] = useState(false);
+  const [isDropdownVisible, setDropdownVisibility] = useState(false);
   const [filteredBreeds, setFilteredBreeds] = useState<Breed[]>(data);
   const [defaultValue, setDefaultValue] = useState("");
 
@@ -22,7 +22,7 @@ function Select({ data, selected, onSelect }: SelectProps) {
     }
     const foundedBreed = data.find((breed) => breed.id === id);
     setDefaultValue(foundedBreed?.name || "");
-    setShow(false);
+    setDropdownVisibility(false);
     onSelect(id);
   };
 
@@ -45,12 +45,12 @@ function Select({ data, selected, onSelect }: SelectProps) {
       <Input
         isSelected={isSelected}
         onChange={handleOnChange}
-        onFocus={() => setShow(true)}
+        onFocus={() => setDropdownVisibility(true)}
         defaultValue={defaultValue}
         placeholder="Velg hundrase"
       />
 
-      {show && (
+      {isDropdownVisible && (
         <ul className="h-[300px] overflow-y-auto border border-gray-300 rounded-md py-4 mt-1">
           {filteredBreeds
             .filter((dog) => dog.bred_for)

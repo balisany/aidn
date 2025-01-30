@@ -21,7 +21,7 @@ function App() {
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
 
-      <h1 className="text-2xl mb-10 text-left">Dog Breeds</h1>
+      <h1 className="text-2xl mb-10 text-left">Hund raser</h1>
       <div className="flex items-start">
         <div>
           {data && (
